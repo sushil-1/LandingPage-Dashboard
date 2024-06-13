@@ -9,7 +9,6 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout: React.FC<ProtectedLayoutProps> = ({ children }) => {
     const router = useRouter();
-
     useEffect(() => {
         const auth = localStorage.getItem('auth');
         if (!auth) {
