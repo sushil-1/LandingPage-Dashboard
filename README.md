@@ -24,7 +24,7 @@ Ensure you have the following installed:
 npm install
 ```
 
-# Uses
+## Uses
 To run the application locally in development mode:
 
 ```bash
@@ -32,7 +32,7 @@ npm run dev
 ```
 After starting the local server, access the application at http://localhost:3000.
 
-# Default Login Credentials
+## Default Login Credentials
 
 - Email: admin@dash.com
 - Password: password
