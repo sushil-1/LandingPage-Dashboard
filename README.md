@@ -1,33 +1,38 @@
-LandingPage-Dashboard
-LandingPage-Dashboard is a landing page management application built with Next.js. It allows users to create, edit, and manage landing pages with a straightforward and intuitive interface. This application utilizes local storage for data management, ensuring persistent data across sessions without requiring an external database.
+# LandingPage-Dashboard
 
-Prerequisites
-Node.js version >= 18.x
-npm version >= 6.x
-Installation
-Clone the repository:
+LandingPage-Dashboard is a landing page management application built with Next.js. It allows users to create, edit, and manage landing pages with a straightforward and intuitive interface. This application uses local storage for data management, ensuring persistent data across sessions without requiring an external database.
 
-bash
-Copy code
-git clone https://github.com/sushil-1/LandingPage-Dashboard.git
-Navigate into the project directory:
+## Prerequisites
 
-bash
-Copy code
-cd LandingPage-Dashboard
-Install dependencies:
+Ensure you have the following installed:
 
-bash
-Copy code
+- Node.js >= 18.x
+- npm >= 6.x
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/sushil-1/LandingPage-Dashboard.git
+   cd LandingPage-Dashboard
+   ```
+   
+2. **Install dependencies:**
+
+```bash
 npm install
-Usage
+```
+
+# Uses
 To run the application locally in development mode:
 
-bash
-Copy code
+```bash
 npm run dev
+```
 After starting the local server, access the application at http://localhost:3000.
 
-Default Login Credentials
-Email: admin@dash.com
-Password: password
+# Default Login Credentials
+
+- Email: admin@dash.com
+- Password: password
