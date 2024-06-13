@@ -1,0 +1,46 @@
+{
+  "pages": [
+    {
+      "id": "c2df",
+      "name": "new page 2",
+      "description": "new page 4",
+      "status": "draft",
+      "components": []
+    },
+    {
+      "id": "46828c8a-91c7-44ef-b952-58d917de08ab",
+      "name": "new page 3",
+      "description": "new page",
+      "components": [],
+      "status": "draft"
+    },
+    {
+      "name": "new page 47",
+      "description": "full page",
+      "status": "Live",
+      "components": [
+        {
+          "id": "367c8023-b19e-4ab7-87c7-e3b6f0f0f13c",
+          "type": "header",
+          "content": "welcome"
+        },
+        {
+          "id": "aff7b0fe-0f33-4f42-8b01-7b7e2dfdfcfd",
+          "type": "footer",
+          "content": "contact"
+        },
+        {
+          "id": "8a168671-b7d2-4920-a58d-1f7978ea88f5",
+          "type": "image",
+          "content": "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
+        },
+        {
+          "id": "de1db1c0-b203-4760-b54f-c42a86028573",
+          "type": "text",
+          "content": "how are you"
+        }
+      ],
+      "id": "e645e1a4-f111-4d55-8fec-852faf48f170"
+    }
+  ]
+}
