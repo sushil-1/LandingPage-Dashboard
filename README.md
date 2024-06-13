@@ -36,3 +36,13 @@ After starting the local server, access the application at http://localhost:3000
 
 - Email: admin@dash.com
 - Password: password
+
+# Deployed Version
+The application is deployed on Vercel. You can access it at https://landing-page-dashboard-flax.vercel.app/.
+
+# Features
+- Create Landing Page with title, description and predefined components (Header, Image, TextBlock and Footer)
+- Edit, View and Delete Landing Page from the Dashboard
+- In edit mode preview landing page, publish landing page
+- In edit mode add, remove and edit components of a landing page.
+- View Live Landing pages
