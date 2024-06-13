@@ -1,46 +1,32 @@
 {
   "pages": [
     {
-      "id": "c2df",
-      "name": "new page 2",
-      "description": "new page 4",
-      "status": "draft",
-      "components": []
-    },
-    {
-      "id": "46828c8a-91c7-44ef-b952-58d917de08ab",
-      "name": "new page 3",
-      "description": "new page",
-      "components": [],
-      "status": "draft"
-    },
-    {
-      "name": "new page 47",
-      "description": "full page",
+      "name": "new page",
+      "description": "ecommerce landing page",
       "status": "Live",
       "components": [
         {
-          "id": "367c8023-b19e-4ab7-87c7-e3b6f0f0f13c",
+          "id": "ff1d114b-c5e3-4c45-9a45-0764f042948d",
           "type": "header",
-          "content": "welcome"
+          "content": "Home"
         },
         {
-          "id": "aff7b0fe-0f33-4f42-8b01-7b7e2dfdfcfd",
+          "id": "2d254419-9c3c-4975-bba5-9ef3a0976dbc",
+          "type": "text",
+          "content": "shop now"
+        },
+        {
+          "id": "2d9cbb1f-d509-4f5d-9db1-decd8af6f9d1",
+          "type": "image",
+          "content": "https://images.pexels.com/photos/50987/money-card-business-credit-card-50987.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        {
+          "id": "9ed2aed7-dd3e-4da0-92e7-162280fd420c",
           "type": "footer",
           "content": "contact"
-        },
-        {
-          "id": "8a168671-b7d2-4920-a58d-1f7978ea88f5",
-          "type": "image",
-          "content": "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
-        },
-        {
-          "id": "de1db1c0-b203-4760-b54f-c42a86028573",
-          "type": "text",
-          "content": "how are you"
         }
       ],
-      "id": "e645e1a4-f111-4d55-8fec-852faf48f170"
+      "id": "d9b9bc8c-4ec8-4a13-9981-cf2a1e46e5ac"
     }
   ]
 }

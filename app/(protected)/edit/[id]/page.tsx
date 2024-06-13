@@ -106,6 +106,7 @@ export default function EditLandingPage() {
       };
 
       await updateLandingPage(id as string, updatedPage);
+      router.replace('/dashboard');
     } catch (error) {
       console.error('Error publishing landing page:', error);
     }
