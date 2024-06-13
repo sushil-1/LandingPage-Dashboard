@@ -1,10 +1,10 @@
 
+import { useRouter } from 'next/navigation';
 import { Page } from './type';
 import { v4 as uuidv4 } from 'uuid';
 
 // Define a key for storing pages in local storage
 const LOCAL_STORAGE_KEY = 'landingPages';
-
 
 export const fetchAllLandingPages = async (): Promise<Page[]> => {
   try {
@@ -106,4 +106,3 @@ export const deleteLandingPage = async (id: string): Promise<boolean> => {
       return false;
   }
 };
-

@@ -44,11 +44,11 @@ const ViewLandingPage = () => {
 
   return (
     <ProtectedLayout>
-      <div>
-          <Link href="/dashboard" className='flex items-center justify-center'>
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-grow">
+          <Link href="/dashboard" className="flex items-center justify-center p-2">
             <button className="text-blue-600">Back to Dashboard</button>
           </Link>
-        <div>
           <div>
             {/* Render Headers */}
             {landingPage.components
@@ -58,8 +58,8 @@ const ViewLandingPage = () => {
                   <Header content={component.content} />
                 </div>
               ))}
-             {/* Render Text Blocks */}
-             {landingPage.components
+            {/* Render Text Blocks */}
+            {landingPage.components
               .filter((component) => component.type === 'text')
               .map((component) => (
                 <div key={component.id}>
@@ -74,16 +74,17 @@ const ViewLandingPage = () => {
                   <ImageComponent content={component.content} />
                 </div>
               ))}
-
-            {/* Render Footer */}
-            {landingPage.components
-              .filter((component) => component.type === 'footer')
-              .map((component) => (
-                <div key={component.id}>
-                  <Footer content={component.content} />
-                </div>
-              ))}
           </div>
+        </div>
+        <div>
+          {/* Render Footer */}
+          {landingPage.components
+            .filter((component) => component.type === 'footer')
+            .map((component) => (
+              <div key={component.id}>
+                <Footer content={component.content} />
+              </div>
+            ))}
         </div>
       </div>
     </ProtectedLayout>

@@ -26,16 +26,35 @@ const Dashboard = () => {
       fetchPages();
     }, []);
 
+    const handleLogout = () => {
+      localStorage.removeItem('auth');
+      router.replace('/');
+   }
+
     return (
         <ProtectedLayout>  
       <div className="flex flex-col items-center justify-center m-2">
+        <div>
           <Link
                href={'/create'}
                className="px-6 py-2 m-8 text-white bg-blue-500 rounded hover:bg-blue-600"
              >
                Create New Landing Page
           </Link>
-        <Table pages={pages} setPages={setPages}/>
+          <button
+            onClick={handleLogout}
+            className="px-6 py-2 m-8 text-white bg-gray-600 rounded hover:bg-gray-700"
+          >
+             Logout
+          </button>
+        </div>
+        {pages.length === 0 ?
+          <div className="font-semibold mt-12">
+            No Landing Page Available!
+          </div>
+           :
+          <Table pages={pages} setPages={setPages}/>
+        }
       </div>
         </ProtectedLayout>
     )

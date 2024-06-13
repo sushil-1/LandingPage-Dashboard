@@ -6,8 +6,8 @@ interface ImageProps {
 
 const Image: React.FC<ImageProps> = ({ content }) => {
   return (
-    <div className="p-4">
-      <img src={content} alt="Content" className="rounded" style={{ maxWidth: '100%', height: 'auto' }} />
+    <div className="flex-grow p-4 flex items-center justify-center">
+      <img src={content} alt="Content" className="rounded max-w-full max-h-full object-contain" />
     </div>
   );
 };

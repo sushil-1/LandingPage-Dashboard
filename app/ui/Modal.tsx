@@ -7,14 +7,16 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
   return (
-    <div className="fixed inset-0 z-50 overflow-auto bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-4 rounded-lg shadow-lg max-w-lg w-full">
-        <div className="flex justify-end">
+    <div className="fixed inset-0 z-50 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+      <div className="bg-white rounded-lg shadow-lg w-full h-full max-w-none max-h-none">
+        <div className="flex justify-end p-2">
           <button className="text-gray-500 hover:text-gray-700" onClick={onClose}>
-            Close
+            Close Preview
           </button>
         </div>
-        <div className="mt-4">{children}</div>
+        <div>
+          {children}
+        </div>
       </div>
     </div>
   );
