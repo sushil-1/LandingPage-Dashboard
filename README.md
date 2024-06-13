@@ -1,6 +1,6 @@
-# LandingPage-Dashboard
+# Landing Page Dashboard
 
-LandingPage-Dashboard is a landing page management application built with Next.js. It allows users to create, edit, and manage landing pages with a straightforward and intuitive interface. This application uses local storage for data management, ensuring persistent data across sessions without requiring an external database.
+Landing Page Dashboard is a landing page management application built with Next.js. It allows users to create, edit, and manage landing pages with a straightforward and intuitive interface. This application uses local storage for data management, ensuring persistent data across sessions without requiring an external database.
 
 ## Prerequisites
 
