@@ -66,7 +66,8 @@ const Dashboard = () => {
           <div className="mt-12 font-semibold text-red-500">{error}</div>
         ) : pages.length === 0 ? (
           <div className="mt-12 font-semibold text-gray-700">
-            No landing pages available. Click "Create New Landing Page" to get started!
+            No landing pages available. 
+            <br/>Click <span className="text-lg text-blue-500"> Create New Landing Page </span> to get started!
           </div>
         ) : (
           <Table pages={pages} setPages={setPages} />

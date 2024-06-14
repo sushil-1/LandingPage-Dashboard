@@ -27,7 +27,6 @@ const componentTypes: ComponentTypes = {
 export default function EditLandingPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [initialData, setInitialData] = useState<Page | null>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [status, setStatus] = useState<string>('');
@@ -41,7 +40,6 @@ export default function EditLandingPage() {
         try {
           const data: Page | null = await fetchLandingPageById(id as string);
           if (data) {
-            setInitialData(data);
             setTitle(data.name);
             setDescription(data.description);
             setStatus(data.status);
