@@ -59,13 +59,12 @@ const Dashboard = () => {
           </Link>
         {loading ? (
           <div className="flex flex-col items-center">
-            
             <p className="mt-4 font-semibold">Loading your landing pages...</p>
           </div>
         ) : error ? (
           <div className="mt-12 font-semibold text-red-500">{error}</div>
         ) : pages.length === 0 ? (
-          <div className="mt-12 font-semibold text-gray-700">
+          <div className="mt-10 font-semibold text-gray-700 text-center">
             No landing pages available. 
             <br/>Click <span className="text-lg text-blue-500"> Create New Landing Page </span> to get started!
           </div>
