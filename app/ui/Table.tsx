@@ -21,31 +21,38 @@ const handleDelete = async (id: string, setPages: React.Dispatch<React.SetStateA
 
 const Table: React.FC<TableProps> = ({ pages, setPages }) => {
   return (
-    <div className="overflow-x-auto mx-auto my-4">
-      <table className="min-w-full table-auto border-collapse bg-white shadow-lg rounded-lg">
-        <thead className="bg-gray-200">
+      <table className="w-full md:w-3/4 table-auto border-collapse bg-gray-50 rounded-lg">
+        <thead className="bg-blue-200">
           <tr>
-            <th className="px-6 py-3 border-b-2 border-gray-300">Title</th>
-            <th className="px-6 py-3 border-b-2 border-gray-300">Actions</th>
+            <th className="px-6 py-3 border-b-2 border-blue-300">Title</th>
+            <th className="px-6 py-3 border-b-2 border-blue-300">Actions</th>
           </tr>
         </thead>
         <tbody>
           {pages.map((page) => (
             <tr key={page.id} className="hover:bg-gray-100 transition duration-150">
-              <td className="px-6 py-4 border-b border-gray-200">
-                {page.name} <span className="text-red-500">{page.status === 'Live' ? 'Live' : ''}</span>
+              <td className="px-6 py-4 border-b border-gray-200 justify-center">
+                <div className="flex items-center justify-center font-medium">
+                {page.name} <span className="text-red-500 mx-2">{page.status === 'Live' ? 'Live' : ''}</span>
+                </div>
               </td>
-              <td className="px-6 py-4 border-b border-gray-200">
-                <div className="flex space-x-4">
-                  <Link href={`/edit/${page.id}`}>
-                    <div className="text-blue-500 hover:underline cursor-pointer">Edit</div>
+              <td className="px-4 py-2 border-b border-gray-200">
+                <div className="flex items-center justify-center space-x-4 md:space-x-8">
+                  <Link 
+                    href={`/edit/${page.id}`}
+                    className="border-2 rounded-md px-2 py-1 hover:bg-blue-100"
+                  >
+                    Edit
                   </Link>
-                  <Link href={`/view/${page.id}`}>
-                    <button className="text-blue-500 hover:underline">View</button>
+                  <Link 
+                    href={`/view/${page.id}`}
+                    className="border-2 rounded-md px-2 py-1 hover:bg-blue-100"
+                  >
+                    View
                   </Link>
                   <button 
                     onClick={() => handleDelete(page.id, setPages, pages)}
-                    className="text-red-500 hover:underline"
+                    className="border-2 border-red-200 text-red-500 rounded-md px-2 py-1 hover:bg-red-100"
                   > 
                     Delete
                   </button>
@@ -55,7 +62,6 @@ const Table: React.FC<TableProps> = ({ pages, setPages }) => {
           ))}
         </tbody>
       </table>
-    </div>
   );
 };
 

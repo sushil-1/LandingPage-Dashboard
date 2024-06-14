@@ -6,9 +6,9 @@ interface TextBlockProps {
 
 const TextBlock: React.FC<TextBlockProps> = ({ content }) => {
   return (
-    <div className="p-4 bg-white border rounded">
-      <p>{content}</p>
-    </div>
+      <p className='font-semibold text-2xl'>
+        {content}
+      </p>
   );
 };
 

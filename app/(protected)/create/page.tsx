@@ -64,9 +64,10 @@ export default function CreatePage() {
 
   return (
     <ProtectedLayout>
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-2xl">
-        <h1 className="text-3xl font-bold mb-6 text-center">Create New Page</h1>
+      <div className="flex justify-center items-center h-screen">
+      <div className="bg-white p-8 rounded shadow-md w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+        <h1 className="text-3xl font-bold text-center mb-2">Create Landing Page</h1>
+        <p className='text-center mb-6'>Enter details to create your Landing Page</p>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold mb-2">Title</label>
@@ -75,6 +76,7 @@ export default function CreatePage() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -121,7 +123,7 @@ export default function CreatePage() {
               className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div className="flex justify-end space-x-4">
+          <div className="flex items-center justify-center space-x-4">
             <button
               type="button"
               className="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400"

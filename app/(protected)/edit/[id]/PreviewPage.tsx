@@ -7,10 +7,11 @@ import ImageComponent from '@/app/ui/Image';
 import ProtectedLayout from '@/app/ProtectedLayout';
 
 interface PreviewPageProps {
+  onClose: () => void;
   landingPage: Page | null;
 }
 
-const PreviewPage: React.FC<PreviewPageProps> = ({ landingPage }) => {
+const PreviewPage: React.FC<PreviewPageProps> = ({ landingPage, onClose }) => {
   if (!landingPage) {
     return <div>Loading...</div>;
   }
@@ -24,34 +25,42 @@ const PreviewPage: React.FC<PreviewPageProps> = ({ landingPage }) => {
   return (
     <ProtectedLayout>
       <div className="flex flex-col min-h-screen">
-        {/* Render Headers */}
-        <div className='flex-grow'>
-        {headers.map((component) => (
-          <div key={component.id}>
-            <Header content={component.content} />
-          </div>
-        ))}
+          <button className="ml-auto mr-8 my-6 border-2 border-gray-400 rounded-md p-2" onClick={onClose}>
+            Close Preview
+          </button>
+        <div className="flex flex-col md:flex-row items-center justify-center flex-grow mb-16">
+          <div className='space-y-4 m-2 md:m-4'>
+            {/* Render Headers */}
+            {headers.map((component) => (
+              <div key={component.id}>
+                <Header content={component.content} />
+              </div>
+            ))}
 
-        {/* Render Text Blocks */}
-        {textBlocks.map((component) => (
-          <div key={component.id}>
-            <TextBlock content={component.content} />
+            {/* Render Text Blocks */}
+            {textBlocks.map((component) => (
+              <div key={component.id}>
+                <TextBlock content={component.content} />
+              </div>
+            ))}
           </div>
-        ))}
-
-        {/* Render Images */}
-        {images.map((component) => (
-          <div key={component.id}>
-            <ImageComponent content={component.content} />
+          <div className='space-y-4 m-2 md:m-4'>
+            {/* Render Images */}
+            {images.map((component) => (
+              <div key={component.id}>
+                <ImageComponent content={component.content} />
+              </div>
+            ))}
           </div>
-        ))}
         </div>
-        {/* Render Footer */}
-        {footer && (
-          <div key={footer.id} className="mt-auto">
-            <Footer content={footer.content} />
-          </div>
-        )}
+        <div className='mt-auto'>
+          {/* Render Footer */}
+          {footer && (
+            <div key={footer.id}>
+              <Footer content={footer.content} />
+            </div>
+          )}
+        </div>
       </div>
     </ProtectedLayout>
   );

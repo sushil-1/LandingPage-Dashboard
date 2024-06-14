@@ -45,11 +45,11 @@ const ViewLandingPage = () => {
   return (
     <ProtectedLayout>
       <div className="flex flex-col min-h-screen">
-        <div className="flex-grow">
-          <Link href="/dashboard" className="flex items-center justify-center p-2">
-            <button className="text-blue-600">Back to Dashboard</button>
-          </Link>
-          <div>
+        <Link href="/dashboard" className="ml-auto mr-8 my-6 border-2 border-gray-400 rounded-md p-2">
+          Back to Dashboard
+        </Link>
+        <div className="flex flex-col md:flex-row items-center justify-center flex-grow mb-16">
+          <div className='space-y-4 m-2 md:m-4'>
             {/* Render Headers */}
             {landingPage.components
               .filter((component) => component.type === 'header')
@@ -66,7 +66,9 @@ const ViewLandingPage = () => {
                   <TextBlock content={component.content} />
                 </div>
               ))}
-            {/* Render Images */}
+          </div>
+          {/* Render Images */}
+          <div className='space-y-4 m-2 md:m-4'>
             {landingPage.components
               .filter((component) => component.type === 'image')
               .map((component) => (
@@ -76,7 +78,7 @@ const ViewLandingPage = () => {
               ))}
           </div>
         </div>
-        <div>
+        <div className='mt-auto'>
           {/* Render Footer */}
           {landingPage.components
             .filter((component) => component.type === 'footer')

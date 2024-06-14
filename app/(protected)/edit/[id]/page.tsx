@@ -4,10 +4,17 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import ProtectedLayout from '@/app/ProtectedLayout';
 import { fetchLandingPageById, updateLandingPage } from '@/app/lib/data';
-import { Page, Component, Header, Footer, TextBlock, Image } from '@/app/lib/type';
+import { Page, Component } from '@/app/lib/type';
 import { createHeader, createFooter, createTextBlock, createImage } from '@/app/lib/utils';
 import PreviewPage from './PreviewPage';
 import Modal from '@/app/ui/Modal';
+
+const componentTypes = {
+  header: { label: 'Header', create: createHeader },
+  footer: { label: 'Footer', create: createFooter },
+  text: { label: 'Text Block', create: createTextBlock },
+  image: { label: 'Image', create: createImage },
+};
 
 export default function EditLandingPage() {
   const { id } = useParams();
@@ -19,7 +26,7 @@ export default function EditLandingPage() {
   const [components, setComponents] = useState<Component[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isPreviewOpen, setPreviewOpen] = useState<boolean>(false);
-  
+
   useEffect(() => {
     if (id) {
       const fetchPage = async () => {
@@ -60,40 +67,22 @@ export default function EditLandingPage() {
   };
 
   const addComponent = (type: string) => {
-    let newComponent: Component | null = null;
-
-    switch (type) {
-      case 'header':
-        newComponent = createHeader('');
-        break;
-      case 'footer':
-        newComponent = createFooter('');
-        break;
-      case 'text':
-        newComponent = createTextBlock('');
-        break;
-      case 'image':
-        newComponent = createImage('');
-        break;
-      default:
-        break;
-    }
-
-    if (newComponent) {
+    if (!componentExists(type)) {
+      const newComponent = componentTypes[type].create('');
       setComponents([...components, newComponent]);
     }
   };
 
   const removeComponent = (id: string) => {
-    const updatedComponents = components.filter((component) => component.id !== id);
-    setComponents(updatedComponents);
+    setComponents(components.filter((component) => component.id !== id));
   };
 
   const modifyComponent = (id: string, updatedContent: string) => {
-    const updatedComponents = components.map((component) =>
-      component.id === id ? { ...component, content: updatedContent } : component
+    setComponents(
+      components.map((component) =>
+        component.id === id ? { ...component, content: updatedContent } : component
+      )
     );
-    setComponents(updatedComponents);
   };
 
   const handlePublish = async () => {
@@ -113,22 +102,14 @@ export default function EditLandingPage() {
   };
 
   const handleCancel = () => {
-    if (initialData) {
-      setTitle(initialData.name);
-      setDescription(initialData.description);
-      setStatus(initialData.status);
-      setComponents(initialData.components);
-    }
     router.replace('/dashboard');
   };
 
-  const handlePreviewOpen = () => {
-    setPreviewOpen(true);
-  };
+  const componentExists = (type: string) => components.some((component) => component.type === type);
 
-  const handlePreviewClose = () => {
-    setPreviewOpen(false);
-  };
+  const availableComponentTypes = Object.keys(componentTypes).filter(
+    (type) => !componentExists(type)
+  );
 
   if (loading) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
@@ -144,106 +125,102 @@ export default function EditLandingPage() {
 
   return (
     <ProtectedLayout>
-      <div className="max-w-4xl mx-auto p-8 bg-white shadow-md rounded-lg">
-        <h1 className="text-3xl font-bold mb-6 text-center">Edit Landing Page</h1>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-semibold mb-2">Title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-semibold mb-2">Description</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          ></textarea>
-        </div>
-        <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Components</h2>
-          <div className="flex space-x-2 mb-2">
-            <button
-              onClick={() => addComponent('header')}
-              className="py-2 px-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-            >
-              Add Header
-            </button>
-            <button
-              onClick={() => addComponent('footer')}
-              className="py-2 px-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-            >
-              Add Footer
-            </button>
-            <button
-              onClick={() => addComponent('text')}
-              className="py-2 px-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-            >
-              Add Text Block
-            </button>
-            <button
-              onClick={() => addComponent('image')}
-              className="py-2 px-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-            >
-              Add Image
-            </button>
+      <div className="flex items-center justify-center flex-grow">
+        <div className="bg-white p-8 rounded shadow-md w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+          <h1 className="text-3xl font-bold mb-2 text-center">Edit Landing Page</h1>
+          <p className="text-gray-700 mb-2 text-center">
+          On this page, you can modify the title, description, and components of your landing page.
+            Add new components from the available options, edit their content, or remove them as needed.
+            For image components, add the image URL in the content field. You can also preview your changes before publishing.
+          </p>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-semibold mb-2">Title</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
           </div>
-          {components.map((component) => (
-            <div key={component.id} className="mb-4">
-              <div className="flex items-center mb-2">
-                <label className="block text-sm font-medium text-gray-700 mr-2">{component.type.toUpperCase()}</label>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-semibold mb-2">Description</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+            <h2 className="text-xl font-semibold mb-2">Components</h2>
+            <div className="flex space-x-2 mb-2">
+              {availableComponentTypes.map((type) => (
                 <button
-                  onClick={() => removeComponent(component.id)}
-                  className="py-1 px-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                  key={type}
+                  onClick={() => addComponent(type)}
+                  className="py-2 px-3 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                 >
-                  Remove
+                  Add {componentTypes[type].label}
                 </button>
-              </div>
-              <textarea
-                value={component.content}
-                onChange={(e) => modifyComponent(component.id, e.target.value)}
-                className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="flex space-x-4 mb-4">
-          <button
-            onClick={handlePreviewOpen}
-            className="py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-          >
-            Preview
-          </button>
-          {status !== 'Live' && (
+            {components.map((component) => (
+              <div key={component.id} className="mb-4">
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mr-2">
+                    {component.type.toUpperCase()}
+                  </label>
+                  <button
+                    onClick={() => removeComponent(component.id)}
+                    className="py-1 px-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <textarea
+                  value={component.content}
+                  onChange={(e) => modifyComponent(component.id, e.target.value)}
+                  className="border rounded py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+              </div>
+            ))}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 my-6">
+            <div className='flex items-center justify-center gap-4'>
             <button
-              onClick={handlePublish}
-              className="py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700"
+              onClick={() => setPreviewOpen(true)}
+              className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
             >
-              Publish
+              Preview
             </button>
-          )}
-          <button
-            onClick={handleUpdate}
-            className="py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-          >
-            Update
-          </button>
-          <button
-            onClick={handleCancel}
-            className="py-2 px-4 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
-          >
-            Cancel
-          </button>
+            {status !== 'Live' && (
+              <button
+                onClick={handlePublish}
+                className="py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700"
+              >
+                Publish
+              </button>
+            )}
+            </div>
+            <div className='flex items-center justify-center gap-4'>
+            <button
+              onClick={handleUpdate}
+              className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            >
+              Update
+            </button>
+            <button
+              onClick={handleCancel}
+              className="py-2 px-4 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+            </div>
+          </div>
         </div>
       </div>
       {isPreviewOpen && (
-        <Modal onClose={handlePreviewClose}>
-          <PreviewPage landingPage={modifiedPage} />
-        </Modal>
-      )}
+          <Modal>
+            <PreviewPage landingPage={modifiedPage} onClose={() => setPreviewOpen(false)} />
+          </Modal>
+        )}
     </ProtectedLayout>
   );
 }

@@ -17,7 +17,7 @@ const ProtectedLayout: React.FC<ProtectedLayoutProps> = ({ children }) => {
     }, [router]);
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-gray-100 min-h-screen">
         {children}
       </div>
     );
